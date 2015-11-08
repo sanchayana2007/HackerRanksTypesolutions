@@ -30,6 +30,8 @@ def power2(N):
         N=N/2
     return N==1
 
+def power2_new(n):
+	return n & n-1 ==0
 ## patterns in String Search 
 
 
@@ -38,4 +40,4 @@ if __name__=='__main__':
 	#[print(fib.__next__()) for i in range(10)]
 	#print(fibonaci2(10))
 	print(prime_numbers(10))
-	print(power2(128))
+	print(power2_new(8))
