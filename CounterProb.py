@@ -7,16 +7,71 @@ __author__ = 'Sanchayan'
 'The game ends when the counter reduces to 1, i.e., N == 1, and the last person to make a valid move wins.' \
 'Given N, your task is to find the winner of the game.'
 
+def Power2_lesserN(N):
+    num = N
+    while(num>1):
+        num = num -1
+        if not num & num-1:
+            print('Closet pow 2',num)
+            return num
 
-def power2(N):
+def whoiswinner(N):
+    Turn = 1
+    while N > 1:
+        if not N & N-1:
+            N= N - int(N/2)
+        else:
+            N = N - Power2_lesserN(N)
+        Turn = Turn +1
+    print('Number of Turns on my code ',Turn)
+    if Turn % 2 ==0 :
+        print('ricard')
+    else:
+        print('Louise')
 
-    while N%2==0 and N > 1:
-        N=N/2
-    return N==1
 
-def counter_winner(N):
-   pass
+
+
+
+def getClosestSmaller(x):
+    x |= x >> 1
+    x |= x >> 2
+    x |= x >> 4
+    x |= x >> 8
+    x |= x >> 16
+    x |= x >> 32
+    x = x + 1
+    x = x >> 1
+    return x
+
+def getNrReductions(x):
+    reductions = 1
+
+    while (x != 1):
+        x = int(x)
+        if x & x-1:
+            #print "x is not power of two"
+            x -= getClosestSmaller(x)
+        else:
+            #print "x is power of two"
+            x /= 2
+        reductions += 1
+
+    return reductions
+
+
+
+
 
 if __name__=='__main__':
-   print( powerof2(128))
-   print(power2(128))
+    ## Calls my code
+    N = 20
+    whoiswinner(20)
+
+    ## calls martin kysels code
+    n = getNrReductions(N)
+    print('Numebr of turns in Martin Kysels Code',n)
+    if  n % 2 != 0:
+        print ("Richard")
+    else:
+        print ("Louise")

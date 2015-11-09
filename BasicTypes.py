@@ -32,6 +32,27 @@ def power2(N):
 
 def power2_new(n):
 	return n & n-1 ==0
+
+# Nearest Power of 2 Number
+def Power2_lesserN(N):
+    num = N
+    while(num>1):
+        num = num -1
+		if not num & num-1:
+            print('Closet pow 2',num)
+            return num
+
+# Nearest power of 2 without Loops
+def getClosestSmaller(x):
+    x |= x >> 1
+    x |= x >> 2
+    x |= x >> 4
+    x |= x >> 8
+    x |= x >> 16
+    x |= x >> 32
+    x = x + 1
+    x = x >> 1
+    return x
 ## patterns in String Search 
 
 
