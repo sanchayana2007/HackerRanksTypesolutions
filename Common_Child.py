@@ -28,7 +28,7 @@ def hr_8_30_15():
 	ret = lcs('academy', 'abracadabra')
 	for s in ret:
 		print s
-	python_solutions.php
+
 	# test 2
 	ret = lcs('ababc', 'abcdaba')
 	for s in ret:

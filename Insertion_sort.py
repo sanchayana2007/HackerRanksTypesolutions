@@ -13,6 +13,14 @@ class BIT(object):
         while idx <= self.sz:
             self.tree[idx]+=val
             idx+=idx & -idx
-
-
-
+    def read(self,idx):
+        sum =0
+        while idx > 0:
+            sum += self.tree[idx]
+            idx -= idx & -idx
+        return sum
+    if __name__='main':
+        l = [32,323,324,545,55,545,77]
+        for _ in l:
+            cnt = 0
+            bit = BIT(10**5+1)
