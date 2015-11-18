@@ -49,7 +49,7 @@ class tkImpl(Tk):
         #This frames are windows whicjh may be multiple for an app on a button click a new frame emerges
         self.frames = {}
         for F in (Startpage, PageOne):
-            frame = F(container, self
+            frame = F(container, self)
             self.frames[F] = frame
             print("frame",frame)
             frame.grid(row=0, column=0, sticky="nsew")
