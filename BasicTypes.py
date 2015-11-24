@@ -1,4 +1,4 @@
-
+from functools import  reduce
 ## fibonnaci 1
 def fibonacci():
 	a, b = 1, 1
@@ -35,12 +35,12 @@ def power2_new(n):
 
 # Nearest Power of 2 Number
 def Power2_lesserN(N):
-    num = N
-    while(num>1):
-        num = num -1
-		if not num & num-1:
-            print('Closet pow 2',num)
-            return num
+	num = N
+	while(num>1):
+		num = num -1
+		if not (num & num-1):
+			print('Closet pow 2',num)
+		return num
 
 # Nearest power of 2 without Loops
 def getClosestSmaller(x):
@@ -55,10 +55,20 @@ def getClosestSmaller(x):
     return x
 ## patterns in String Search 
 
+def factorial_1(n):
+	if n == 1:
+		return  1
+	else:
+		return  n * factorial_1(n-1)
+
+def factorial_2(n):
+	return reduce(lambda a,b: a*b, range(1,n+1))
 
 if __name__=='__main__':
-	fib = fibonacci()
+	#fib = fibonacci()
 	#[print(fib.__next__()) for i in range(10)]
 	#print(fibonaci2(10))
-	print(prime_numbers(10))
-	print(power2_new(8))
+	#print(prime_numbers(10))
+	#print(power2_new(8))
+	print(factorial_1(4))
+	print(factorial_2(4))
