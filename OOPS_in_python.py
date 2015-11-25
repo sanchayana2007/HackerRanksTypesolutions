@@ -1,8 +1,53 @@
 __author__ = 'Sanchayan'
 import sys
+from abc import ABCMeta,abstractmethod
 #private Implementation
 
-# Interface , abstarct Method implementation virtual keyword
+
+#MRO
+
+#Interface , abstarct Method implementation virtual keyword
+
+class AbstractEntity(metaclass=ABCMeta):
+    __slots__ = ()
+    @abstractmethod
+    def func1(self):
+        return 1
+
+    @classmethod
+    def __subclasshook__(cls, subclass):
+        print('detded')
+        if cls is Hand:
+            if any('func1' in B.__dict__ for B in subclass.__mro__):
+                return True
+
+            return NotImplemented
+
+
+class Entity(AbstractEntity):
+    def __init__(self):
+        pass
+    def test(self):
+        pass
+    def func1(self,t):
+        print('derived')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #RTTI
 
@@ -36,3 +81,7 @@ if __name__=='__main__':
     b = Immutabe(a)
     d = {a:1}
     e = {b:2}
+
+    a = Entity()
+
+    a.func1(3)
