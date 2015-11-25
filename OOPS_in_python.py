@@ -1,12 +1,15 @@
 __author__ = 'Sanchayan'
 import sys
 from abc import ABCMeta,abstractmethod
+
+
+
 #private Implementation
 
 
-#MRO
+# 1> MRO
 
-#Interface , abstarct Method implementation virtual keyword
+#2> Interface , abstarct Method implementation virtual keyword
 
 class AbstractEntity(metaclass=ABCMeta):
     __slots__ = ()
@@ -33,23 +36,22 @@ class Entity(AbstractEntity):
         print('derived')
 
 
+# 3> Functions as classes = Callables
+'''this Functional class will Sum of first n numbers '''
+import collections.abc
+class SumofN(collections.abc.Callable):
+    def __call__(self, n):
+        if n > 0:
+            return n * (n+1)//2
+        else:
+            return 0
 
 
 
 
+#RTTIional Classes as Callables
 
 
-
-
-
-
-
-
-
-
-
-
-#RTTI
 
 #Multiargument Polymorphism
 
@@ -65,6 +67,8 @@ class Immutabe(Mutable):
             self.l = args[0].l
         else:
             super().__init__(*args)
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
     ''''
     def __hash__(self):
         h=0
@@ -82,6 +86,8 @@ if __name__=='__main__':
     d = {a:1}
     e = {b:2}
 
-    a = Entity()
+#    a = Entity()
+ #   a.func1(3)
+    func = SumofN()
+    print(func(5))
 
-    a.func1(3)
