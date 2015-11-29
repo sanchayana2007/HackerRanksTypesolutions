@@ -1,0 +1,4 @@
+*.name
+.idea/misc.xml
+*.xml
+.idea/HackerRanksTypesolutions.iml
