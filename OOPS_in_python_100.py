@@ -2,9 +2,43 @@ __author__ = 'Sanchayan'
 import sys
 from abc import ABCMeta,abstractmethod
 
-
-
 #private Implementation
+#1>
+import inspect
+import re
+
+def private_check_deco(functional_arg):
+    print(functional_arg)
+    def _private_check_deco():
+        try:
+            # func_call = inspect.getargvalues(inspect.currentframe())
+            #matched = re.match('self',func_call)
+            arg_func = inspect.getargspec(functional_arg).args[0]
+            print(arg_func)
+            matched = re.match('self',arg_func)
+            #print(matched)
+            if matched :
+                print('This is a privite function ')
+                return AttributeError
+            else:
+                functional_arg()
+
+        except Exception as e :
+            print(e.__doc__)
+        # print(e.message)
+    return _private_check_deco()
+
+
+class Priv_test():
+
+
+    @private_check_deco
+    def func(self):
+        print('I am a Private function')
+
+    def non_public(self):
+        print('Public Function')
+        self.func()
 
 
 # 1> MRO
@@ -69,6 +103,7 @@ class Immutabe(Mutable):
             super().__init__(*args)
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
     ''''
     def __hash__(self):
         h=0
@@ -81,13 +116,25 @@ class Immutabe(Mutable):
 
 if __name__=='__main__':
     #print('hash',sys.hash_info)
+
+
+    # Private function checks
+    p = Priv_test()
+    p.func()
+    p.non_public()
+
+
+    #Immutable and Mutable checks
     a = Mutable([1,2,3,4],2)
     b = Immutabe(a)
     d = {a:1}
     e = {b:2}
 
-#    a = Entity()
- #   a.func1(3)
+    #Abstarct Method Checks
+    #a = Entity()
+    #a.func1(3)
+
+    #Callabales checks
     func = SumofN()
     print(func(5))
 
