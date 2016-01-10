@@ -72,3 +72,4 @@ if __name__=='__main__':
 	#print(power2_new(8))
 	print(factorial_1(4))
 	print(factorial_2(4))
+

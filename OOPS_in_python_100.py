@@ -1,44 +1,59 @@
 __author__ = 'Sanchayan'
 import sys
 from abc import ABCMeta,abstractmethod
-
-#private Implementation
-#1>
 import inspect
 import re
+#private Implementation
+#1>
+
+
 
 def private_check_deco(functional_arg):
-    print(functional_arg)
-    def _private_check_deco():
+
+    def _private_check_deco(self):
         try:
-            # func_call = inspect.getargvalues(inspect.currentframe())
-            #matched = re.match('self',func_call)
-            arg_func = inspect.getargspec(functional_arg).args[0]
-            print(arg_func)
-            matched = re.match('self',arg_func)
-            #print(matched)
+            func_call = inspect.getouterframes(inspect.currentframe())[1][4][0]
+            print('This is a Deco Private Check and function called by ',func_call)
+            matched = re.search('self',func_call)
             if matched :
-                print('This is a privite function ')
-                return AttributeError
+                print('Allowed private a call')
+                functional_arg(self)
             else:
-                functional_arg()
+                print('Not Allowed private a call')
+
+                return AttributeError
 
         except Exception as e :
             print(e.__doc__)
-        # print(e.message)
-    return _private_check_deco()
 
+    return _private_check_deco
 
+##Currently Private of this works from outside class  and Inside class
 class Priv_test():
+    def __init__(self):
 
+        pass
+    def Man_private(self):
+
+        func_call = inspect.getouterframes(inspect.currentframe())[1][4][0]
+        print('This is a Manual Private Check and function called by ',func_call)
+        matched = re.search('self',func_call)
+        print(func_call)
+        if matched :
+            print('Allowed private a call')
+            ## Function body
+        else:
+            print('Not Allowed private a call ')
+            return AttributeError
 
     @private_check_deco
-    def func(self):
+    def funcee(self):
         print('I am a Private function')
 
-    def non_public(self):
-        print('Public Function')
-        self.func()
+    def public(self):
+         print('Public Function')
+         self.funcee()
+         self.Man_private()
 
 
 # 1> MRO
@@ -64,8 +79,8 @@ class AbstractEntity(metaclass=ABCMeta):
 class Entity(AbstractEntity):
     def __init__(self):
         pass
-    def test(self):
-        pass
+    #def test(self):
+    #    pass
     def func1(self,t):
         print('derived')
 
@@ -115,26 +130,29 @@ class Immutabe(Mutable):
 
 
 if __name__=='__main__':
-    #print('hash',sys.hash_info)
+
 
 
     # Private function checks
     p = Priv_test()
-    p.func()
-    p.non_public()
+    #p.funcee()
+    p.public()
+    p.Man_private()
+
+    #p.Man_private()
 
 
     #Immutable and Mutable checks
-    a = Mutable([1,2,3,4],2)
-    b = Immutabe(a)
-    d = {a:1}
-    e = {b:2}
+    #a = Mutable([1,2,3,4],2)
+   # b = Immutabe(a)
+    #d = {a:1}
+    #e = {b:2}
 
     #Abstarct Method Checks
     #a = Entity()
     #a.func1(3)
 
     #Callabales checks
-    func = SumofN()
-    print(func(5))
+    #func = SumofN()
+    #print(func(5))
 
