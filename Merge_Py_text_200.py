@@ -11,8 +11,6 @@ def read_file(file,Dst):
 
            w.write(file_seperation + file_content)
 
-
-
 if __name__ =="__main__":
     Src = str('C:\\Users\Sanchayan\Documents\GitHub\HackerRanksTypesolutions\\')
     Dest = 'D:\All2text.txt'
