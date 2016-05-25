@@ -1,8 +1,6 @@
 __author__ = 'Sanchayan'
 
 from html.parser import *
-
-
 # create a subclass and override the handler methods
 class MyHTMLParser(HTMLParser):
   def __init__(self):
@@ -69,6 +67,7 @@ class MyHTMLParser(HTMLParser):
       pass
 
   def handle_data(self, data):
+
     if self.tableParsingOngoing == True and data != '' and data != '\n':
       if self.charref == True and len(self.L) >= 1:
         self.charref = False
@@ -119,7 +118,7 @@ class MyHTMLParser(HTMLParser):
     print(self.L)
     print('Dictionary:\n',self.D)
 
-f = open('a.html')
+f = open('wikiPage.html')
 X = MyHTMLParser()
 X.feed(f.read().strip())
 X.display()
