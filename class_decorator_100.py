@@ -2,7 +2,7 @@ __author__ = 'Sanchayan'
 
 
 def debug(func):
-    msg =func.__qualname__
+    msg =func.__name__
     def wrapper(*args, **kwargs):
         print(msg)
         return func(*args, **kwargs)

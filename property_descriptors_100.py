@@ -1,6 +1,5 @@
 __author__ = 'Sanchayan'
 
-
 class ProprtyDescriptor:
 #Put a class atribute to used as a property
     _x=0
