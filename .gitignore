@@ -2,3 +2,8 @@
 .idea/misc.xml
 *.xml
 .idea/HackerRanksTypesolutions.iml
+Automation/pexpect1/bashrc.sh
+Automation/pexpect1/ANSI.py
+Automation/pexpect1/async.py
+Automation/pexpect1/exceptions.py
+*.py
