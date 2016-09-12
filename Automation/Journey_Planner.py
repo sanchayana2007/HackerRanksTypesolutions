@@ -14,6 +14,9 @@ timestr=time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
 LOGFILENAME= "Password_change" + timestr + ".log"
 
 
+
+
+
 #if os.isfile(LOGFILENAME):
 #  os.remove(LOGFILENAME)
 
