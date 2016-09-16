@@ -8,7 +8,7 @@ import sys
 import os
 import logging
 import time
-import bs4
+import requests
 
 timestr=time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
 LOGFILENAME= "Password_change" + timestr + ".log"
@@ -26,25 +26,27 @@ if platform == "linux" or platform == "linux2":
   exit(1)
 elif platform == "win32" :
   print("Not Optimised for Windows")
-  exit(1)
+  
+  #exit(1)
 
 def process_arg():
   from optparse import OptionParser
   usage = "Password_change.py -f Filename"
   parser=OptionParser(usage)
   parser.add_option("-f", dest="filename",help="File Name")
-  return parser.parseargs(sys.argv)
+  return parser.parse_args(sys.argv)
 
 
 def bor_holidays():
-    print("Inside the ")
+    print("Inside the")
 def bou_holidays():
     print("Inside the main")
 
 
 def flight_tickets_crawler():
-    print("Inside the main")
-
+		print("Inside the flight crawler")
+		r = requests.get('https://www.tripadvisor.in/SmartDeals-g297628-Bengaluru_Bangalore_Karnataka-Hotel-Deals.html')
+		print(r.text)
 
 def best_journey_report():
     print("Inside the main")
@@ -57,5 +59,5 @@ def send_gmail():
 if __name__=="__main__":
     print("Inside the main")
     (opt,args)=process_arg()
-    bor_holidays(opt.filename)
+    #bor_holidays(opt.filename)
     flight_tickets_crawler()
