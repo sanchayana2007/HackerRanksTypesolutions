@@ -1,6 +1,6 @@
 
 
-Function get-pwdset($user)
+Function Net_get-pwdset($user)
 {	
 	$defaultPassword = "Abc1234!"
 	
@@ -30,5 +30,15 @@ Function get-pwdset($user)
 	
 }
 
-
-get-pwdset "tst10"
+$cmd="net"
+$status=Get-Command  $cmd -errorAction SilentlyContinue
+if (-Not $status )
+{
+    #
+	write-host "Net module is not threre"
+}
+else
+{
+	write-host "Net module is  threre"
+	Net_get-pwdset "tst1"
+}
