@@ -9,13 +9,16 @@ import os
 import logging
 import time
 import requests
-
+from selenium import webdriver
 timestr=time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
 LOGFILENAME= "Password_change" + timestr + ".log"
+url='https://www.cleartrip.com/flights/results?from=BLR&to=CCU&depart_date=25/09/2016&adults=1&childs=0&infants=0&class=Economy&airline=&carrier=&intl=n&sd=1474230239314&page=loaded&view=calendar'
 
+url1='http://flight.yatra.com/air-search-ui/dom2/trigger?type=O&viewName=normal&flexi=0&noOfSegments=1&origin=BLR&originCountry=IN&destination=CCU&destinationCountry=IN&flight_depart_date=01/10/2016&ADT=1&CHD=0&INF=0&class=Economy&source=fresco-home'
 
-
-
+#browser = webdriver.Firefox()
+#browser.get(url)
+#print(browser.page_source)
 
 #if os.isfile(LOGFILENAME):
 #  os.remove(LOGFILENAME)
@@ -23,7 +26,6 @@ LOGFILENAME= "Password_change" + timestr + ".log"
 from sys import platform
 if platform == "linux" or platform == "linux2":
   print("Not Optimised for Linux System Need to be tested")
-  exit(1)
 elif platform == "win32" :
   print("Not Optimised for Windows")
   
@@ -45,7 +47,7 @@ def bou_holidays():
 
 def flight_tickets_crawler():
 		print("Inside the flight crawler")
-		r = requests.get('https://www.tripadvisor.in/SmartDeals-g297628-Bengaluru_Bangalore_Karnataka-Hotel-Deals.html')
+		r = requests.get(url1)
 		print(r.text)
 
 def best_journey_report():
