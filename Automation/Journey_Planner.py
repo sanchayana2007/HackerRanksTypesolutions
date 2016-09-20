@@ -9,6 +9,9 @@ import os
 import logging
 import time
 import requests
+import re
+import math 
+
 from selenium import webdriver
 timestr=time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
 LOGFILENAME= "Password_change" + timestr + ".log"
@@ -56,7 +59,39 @@ def best_journey_report():
 def send_gmail():
     print('dd')
 
-
+def file_parser():
+	Src='t.txt'
+	start=':"BLRCCU'
+	end='BLRCCU'
+	parse_str='BLRCCU'
+	count=0
+	with open(Src,'r') as f:
+		contents=f.read()
+		print(len(contents))
+		chop_len=math.ceil(len(contents)/2)
+		contents=contents[chop_len:]
+		chop_len=math.ceil(len(contents)/2)
+		contents=contents[:chop_len]
+		#print('contents',contents)
+		
+	pat=re.compile(start)
+	
+	 
+	res=re.search(pat,contents)
+	
+	while(res):
+		if count >=4:
+			break 
+		contents=contents[res.end():]
+		flight_info=contents[:15]
+		price_pat=re.search('"tf":',contents)
+		price= contents[price_pat.end():]
+		price=price[:8]
+		
+		print("flight_info",flight_info,price)
+		count+=1
+		#print(contents)
+		res=re.search(pat,contents)
 
 if __name__=="__main__":
     print("Inside the main")
