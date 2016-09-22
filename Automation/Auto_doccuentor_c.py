@@ -64,9 +64,36 @@ def open_parse_file():
 	print(contents)
 	#Parse comments 
 	#Parse Structure
+import re
+def comments_parser():
+	with open('test.txt','r') as f:
+	
+		p=f.read()
+		pat=re.compile(r'/*')
+		pat1=re.compile(r'\*/')
+		pat2=re.compile(r'\*')
+		pat3=re.compile(r'/')
+		while(True):
+				
+			m=re.search(pat,p)
+			m1=re.search(pat1,p)
+			if m!=None and m1!= None:
+				
+				
+				inside_comment_p=p[m.end()+1:m1.start()]
+				inside_comment=pat2.sub(" ",inside_comment_p)
+				inside_comment=pat3.sub(" ",inside_comment)
+				p=p[m1.end():]
+				print(inside_comment)
+				
+				
+			else:
+				break
+			
 
 def main():
 	#files_collector()	
     	open_parse_file()
+    	comments_parser()
 if __name__ == '__main__':
 	main()                                                                                                                    
