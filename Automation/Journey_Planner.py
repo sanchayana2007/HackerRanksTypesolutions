@@ -26,6 +26,46 @@ url1='http://flight.yatra.com/air-search-ui/dom2/trigger?type=O&viewName=normal&
 #if os.isfile(LOGFILENAME):
 #  os.remove(LOGFILENAME)
 
+def date_creator():
+	no_of_dates=3
+	today=datetime.date.today()
+	print(today.month)
+	day = today.day
+	month= today.month
+	year = today.year
+	count = 0 
+	while True:
+		if count==no_of_dates:
+			break
+		count+=1
+		
+		day=day+1
+		if day==1:
+			month = month +1
+		elif day>28 and month==2:
+			day=1
+			month = month +1
+		elif day>=31:
+			if month not in [1,3,5,7,8,10,12]:
+				day=1
+				month = month +1
+			elif day > 31:
+				day=1
+				month = month +1
+		if month > 12:
+			year=year+1
+			month =1
+		#print(day,month,year)
+		datestr=str(day)+','+str(month)+','+str(year)
+		departdate=str(day)+'/'+str(month)+'/'+str(year)
+		weekday=datetime.datetime.strptime(datestr, '%d,%m,%Y').strftime('%A')
+		print(weekday)
+		
+		#Date creator should call the Url creator 
+		Orig='BLR'
+		Dest='CCU'
+		url='http://flight.yatra.com/air-search-ui/dom2/trigger?type=O&viewName=normal&flexi=0&noOfSegments=1&origin='+Orig+'&originCountry=IN&destination='+Dest+'&destinationCountry=IN&flight_depart_date='+departdate+'&ADT=1&CHD=0&INF=0&class=Economy&source=fresco-home'
+		print(url)
 from sys import platform
 if platform == "linux" or platform == "linux2":
   print("Not Optimised for Linux System Need to be tested")
