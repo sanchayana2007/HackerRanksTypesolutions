@@ -21,8 +21,13 @@ def handle_file(filename,choice):
   fd.flush() ## Forcefully write whatever is present in your buffer 
   fd.close()
   
- 
- 
+def read_from():
+    with open('data.txt', 'r') as f:
+    data = f.readlines()
+
+    for line in data:
+        words = line.split()
+        print words
 
 
 
