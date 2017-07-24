@@ -1,4 +1,3 @@
-
 import csv
 import time
 import re
@@ -20,7 +19,8 @@ class Excel():
 	def __init__(self,filename=None):
 		self.excel_filename=filename
 		self.groups= defaultdict(list)
-		self.load_excel(5)
+		self.ungroupdata=[]
+		self.load_excel()
 		
 	
 		
@@ -56,13 +56,15 @@ class Excel():
 				if index == 0:
 					header.append(row)
 					continue
-				#Lets group by the data for more faster search
-				if row[group_by] not in self.groups.keys():
-					self.groups[row[group_by]]=row
+				if group_by:
+					#Lets group by the data for more faster search
+					if row[group_by] not in self.groups.keys():
+						self.groups[row[group_by]]=row
+					else:
+						self.groups[row[group_by]].append(row)
 				else:
-					self.groups[row[group_by]].append(row)
-					
-			
+					print("group_by None is not implemented")
+					self.ungroupdata.append(row)
 				
 					
 				
@@ -73,6 +75,7 @@ class Excel():
 					#if check_SRS("Dell",row[0],row[12]):
 						#valid_rows.append(row)
 			print(self.groups.items())
+			print(self.ungroupdata)
 			#valid_rows=sorted(valid_rows,key=itemgetter(4))
 			valid_rows=header+ valid_rows
 			#print(valid_rows)
