@@ -19,4 +19,4 @@ if __name__=="__main__":
 		
 	
 	
-	#
+	#https://stackoverflow.com/questions/104420/how-to-generate-all-permutations-of-a-list-in-python
