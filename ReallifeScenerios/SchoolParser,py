@@ -1,0 +1,33 @@
+__author__ = 'Sanchayan'
+import re 
+import csv 
+
+def csv_writer(data):
+	filename="Outputtsk.csv"
+	with open(filename,"w",newline="") as csv_file:
+		writer=csv.writer(csv_file)
+		writer.writerows(data)
+
+
+
+if __name__ == '__main__':
+	filename="raw_tsk.txt"
+	pat1=re.compile(r'More\n')
+	school_data=[]
+	school_data.append(["Schoo name","Addr1","Addr2","Phone1","Phone2","Type","Type","Type"])
+	with open(filename,'r') as f:
+		contents=f.read()
+		res=re.search(pat1,contents)
+		while True:
+			res=re.search(pat1,contents)
+			if res:
+				temp=contents[0:res.start()]
+				contents=contents[res.end():]
+				temp=temp.strip()
+				contents=contents.strip()
+				school_data.append(temp.split('\n'))
+				
+			else:
+				break
+				
+	csv_writer(school_data)
