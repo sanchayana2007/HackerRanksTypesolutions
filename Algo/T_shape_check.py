@@ -1,13 +1,44 @@
+"""
+The first line contains the number of test cases T. Each test cases has five lines containing two non-negative integers x and y separated by a single space. Points in the same test case are all distinct.
+
+Constraints
+
+1 ≤ T ≤ 500
+0 ≤ x ≤ 106
+0 ≤ y ≤ 106
+Output Format
+
+For each test-case, output Yes if they form T-shaped or No if they don't form T-shaped in a new line.
+
+Sample Input 0
+
+1
+7 5
+8 5
+6 5
+7 6
+7 7
+Sample Output 0
+
+Yes
+Explanation 0
+
+The given coordinate points form a close T-shape, hence the output is YES
+
+"""
+
+
+
 def groupby_occurence(item,indx):
 	#[(1,2),(2,2),(1,3)], 1 --> [2:2,3:1]
 	d={}
 	for i in item:
 		if i[indx] in d:
-			cnt+=1
-			d[i[indx]]=cnt
+			
+			d[i[indx]]+=1
 		else:
-			cnt=1
-			d[i[indx]]=cnt
+			
+			d[i[indx]]=1
 	return d
 
 def three_times_cord(item):
@@ -52,7 +83,8 @@ def chec_T(c):
 	key=three_times_cord(d)
 	#find the Line points on straight line i
 	print(key,d)
-	res=straight_line_validation(d,key)
+	if key:
+		res=straight_line_validation(d,key)
 	
 	#X Axis : make a group of points based on count 
 	d=groupby_occurence(c,0)
@@ -60,7 +92,8 @@ def chec_T(c):
 	key=three_times_cord(d)
 	#find the Line points on straight line 
 	print(key,d)
-	res=T_line_validation(d,key)
+	if key:
+		res=T_line_validation(d,key)
 	
 	#handle when the T is oriented in X direction 
 
@@ -70,14 +103,17 @@ def chec_T(c):
 		#Find the common point between both lines 
 		key=three_times_cord(d)
 		#find the Line points on straight line 
-		res=straight_line_validation(d,key)
+		if key:
+			res=straight_line_validation(d,key)
 		
 		#Y Axis : make a group of points based on count 
 		d=groupby_occurence(c,1)
 		#Find the common point between both lines 
+		
 		key=three_times_cord(d)
 		#find the Line points on straight line 
-		res=T_line_validation(d,key)
+		if key:
+			res=T_line_validation(d,key)
 
 	return res
 
