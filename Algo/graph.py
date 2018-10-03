@@ -17,6 +17,7 @@ class Graph:
 	def display(self):
 		print(self.Nodes)
 	#You can always enter a search element and return from the function 
+	#  Time: Space >  O(V + E) : O(V + E)   V= vertexes E = Edges 
 	def bfs(self,node):
 		print("BFS")
 		temp=self.root
@@ -32,7 +33,7 @@ class Graph:
 					d.appendleft(n[0])
 				count+=1
 
-
+	#  Time: Space >  O(V + E) : O(V + E)   V= vertexes E = Edges 
 	def dfs(self,node):
 		print("DFS")
 		temp=self.root
