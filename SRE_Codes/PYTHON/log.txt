@@ -1,0 +1,9 @@
+Mar-18-09:33:48 local_host_name amagent 42: result async=false sync failed
+Mar-18-09:33:48 local_host_name Apache_tomcat 52: checkin uptime=391638 ver=1.0-20 UTC-0700 commit failed 
+Mar-18-09:33:48 local_host_name spark 40: Executing command: [Error, host nonexistent.
+Mar-18-09:33:48 local_host_name amagent 42: fetch failed Bad URL
+Mar-18-09:33:48 local_host_name Apache_tomcat 52: Error 404
+Mar-18-09:33:48 local_host_name spark 40: Received execCmd command bad connection
+Mar-18-09:33:48 local_host_name spark 40: Result: error in reading memory
+Mar-18-09:33:49 local_host_name spark 40: Received execCmd command bad connection
+Mar-18-09:33:49 local_host_name spark 40: Result: error in reading memory
