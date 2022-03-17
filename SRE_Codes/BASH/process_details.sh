@@ -23,13 +23,22 @@ if [[ ! -z "$processid"  ]];
 		#All 
 		 echo "ESTABLISHED Ports################################"
 	         echo "${lsofprocess}" | grep "IPv4" | grep "ESTABLISHED" | tail 	
-		 echo "#######################  MEMORY PROCESS ################################"
+		 echo "#######################  MEMORY PROCESS  CPU UTILISATION  ################################"
+		 avgmemcpu=$(ps -p   $processid -o %cpu,%mem,cmd)	
+	         echo "AVG USES"  	
+	         echo "${avgmemcpu}"  	
 		 echo "#######################  IO PROCESS ################################"
-		 echo "#######################  CPU UTILISATION  ################################"
+		 if hash stap  2>/dev/null; then
+        			stap -v iotop.stp
+    			else
+        		        echo "Stap is not installed "
+			fi
+		 echo "AVG USES"  	
 		 echo "#######################  LOG DETAILS   ################################"
 		 
 else
 	echo "Process ID is not found"
+	echo "Process Name is Incorrect or the Process is not running "
 
 fi
 
